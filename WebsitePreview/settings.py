@@ -111,7 +111,7 @@ ROOT_URLCONF = 'WebsitePreview.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'WebsitePreview.wsgi.application'
 
-TEMPLATE_DIRS = ('/Users/raphaelcruzeiro/Documents/Projects/WebsitePreview/templates',)
+TEMPLATE_DIRS = (os.path.join(PROJECT_PATH, '../templates'),)
 
 INSTALLED_APPS = (
     'grappelli',
