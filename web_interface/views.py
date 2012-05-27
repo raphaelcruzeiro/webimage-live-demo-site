@@ -41,7 +41,7 @@ def submit_generation_request(request):
                         command = []
                         if sys.platform == 'darwin':
                             command = [webimage_path, r.url, img_path, '1024']
-                        elif sys.platform == 'linux':
+                        elif sys.platform == 'linux2' or sys.platform == 'linux':
                             command = ['xvfb-run', '--server-args="-screen 0, 1024x768x24"', webimage_path, r.url, img_path, '1024']
                         if subprocess.call(command):
                             print 'Error!'
