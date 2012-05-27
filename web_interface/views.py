@@ -8,6 +8,7 @@ import hashlib
 import os
 import sys
 import threading
+import shlex
 from datetime import datetime
 
 def index(request):
@@ -40,9 +41,9 @@ def submit_generation_request(request):
                         img_path = os.path.join(PROJECT_PATH, img_name)
                         command = []
                         if sys.platform == 'darwin':
-                            command = [webimage_path, r.url, img_path, '1024']
+                            command = shlex.split('%s %s %s 1024' % (webimage_path, r.url, img_path))
                         elif sys.platform == 'linux2' or sys.platform == 'linux':
-                            command = ['xvfb-run', '--server-args="-screen 0, 1024x768x24"', webimage_path, r.url, img_path, '1024']
+                            command = shlex.split('xvfb-run --server-args="-screen 0, 1024x768x24" %s %s %s 1024' % (webimage_path, r.url, img_path))
                         print command
                         if subprocess.call(command):
                             print 'Error!'
