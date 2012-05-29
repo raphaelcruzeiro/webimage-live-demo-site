@@ -58,10 +58,12 @@ def submit_generation_request(request):
                             r.generated = True
                             r.save()
 
+                            thumbpath = '%s_thumb.jpg' % r.image_path[0:-4]
+
                             send_mail('The Website preview generator tool',
                                 'Hello there,\nThe website preview you requested is ready. '
-                                'Visit the following address to see the generated preview:'
-                                '\n http://previewtool.raphaelcruzeiro.com%s' % r.image_path,
+                                'Visit the following addresses to see the generated preview and the half size thumb:'
+                                '\n http://previewtool.raphaelcruzeiro.com%s\nhttp://previewtool.raphaelcruzeiro.com%s' % (r.image_path, thumbpath),
                                 'noreply@raphaelcruzeiro.com', [r.email], fail_silently=True,)
                     finally:
                         lock.release()
