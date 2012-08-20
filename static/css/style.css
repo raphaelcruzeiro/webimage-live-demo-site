@@ -6,6 +6,9 @@ html, body {
     font-size: 11pt;
 }
 
+#donate { margin: 20px 0 0 145px;
+}
+
 i {
     font-style: italic;
 }
